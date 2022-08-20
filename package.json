@@ -1,0 +1,25 @@
+{
+  "name": "study-webpack5",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "npx webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangsongyang/study-webpack5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangsongyang/study-webpack5/issues"
+  },
+  "homepage": "https://github.com/jiangsongyang/study-webpack5#readme",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
