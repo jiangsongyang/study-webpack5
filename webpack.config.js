@@ -10,17 +10,29 @@ module.exports = {
   entry: {
     index: "./src/index.js",
   },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
+  },
   output: {
     clean: true,
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "code split",
+      title: "Caching",
     }),
   ],
 };
