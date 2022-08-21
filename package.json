@@ -7,7 +7,7 @@
     "dev": "webpack serve --open",
     "server": "node server.js",
     "watch": "webpack --watch",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js --env goal=local --env production --progress"
   },
   "repository": {
     "type": "git",
