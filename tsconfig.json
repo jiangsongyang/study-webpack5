@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "strictNullChecks": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "target": "es6",
+    "lib": ["dom", "es2017"],
+    "skipLibCheck": true
+  },
+  "include": ["src/*"]
+}

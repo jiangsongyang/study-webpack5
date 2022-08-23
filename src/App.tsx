@@ -1,0 +1,1 @@
+export const App = () =>  <>this is app</>
