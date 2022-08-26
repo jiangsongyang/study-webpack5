@@ -1,10 +1,15 @@
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const compiler = webpack({
   mode: 'development',
   entry: './src/main.tsx',
+  devtool: 'cheap-module-source-map',
   output: {
     filename: 'bundle.js',
     clean: true,
@@ -15,23 +20,15 @@ const compiler = webpack({
   module: {
     rules: [
       {
-        test: /\.(ts)?$/,
-        exclude(modulePath) {
-          return (
-            /node_modules/.test(modulePath) && !/\/common\//.test(modulePath)
-          )
-        },
-        use: [
-          {
-            loader: 'ts-loader',
-          },
-        ],
-      },
-      {
         test: /\.(tsx)?$/,
         exclude: /node_modules/,
-        enforce: 'pre',
         use: [
+          {
+            loader: 'source-map-loader',
+          },
+          {
+            loader: resolve(__dirname, '../loader/index.js'),
+          },
           {
             loader: 'babel-loader',
             options: {
@@ -55,6 +52,19 @@ const compiler = webpack({
                 ],
               ],
             },
+          },
+        ],
+      },
+      {
+        test: /\.(ts)?$/,
+        exclude(modulePath) {
+          return (
+            /node_modules/.test(modulePath) && !/\/common\//.test(modulePath)
+          )
+        },
+        use: [
+          {
+            loader: 'ts-loader',
           },
         ],
       },

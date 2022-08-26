@@ -1,10 +1,15 @@
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const compiler = webpack({
   mode: 'development',
   entry: './src/main.tsx',
+  devtool: 'cheap-module-source-map',
   output: {
     filename: 'bundle.js',
     clean: true,
@@ -32,6 +37,9 @@ const compiler = webpack({
         exclude: /node_modules/,
         enforce: 'pre',
         use: [
+          // {
+          //   loader: resolve(__dirname, '../loader/index.js'),
+          // },
           {
             loader: 'babel-loader',
             options: {
@@ -68,7 +76,7 @@ const compiler = webpack({
   ],
 })
 
-const devServerOptions = { open: true }
+const devServerOptions = { open: false }
 const server = new WebpackDevServer(devServerOptions, compiler)
 
 const runServer = async () => {
