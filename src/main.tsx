@@ -1,4 +1,10 @@
-import ReactDom from "react-dom";
-import { App } from "./App";
+import ReactDOM from 'react-dom/client'
+import App from './App'
 
-ReactDom.render(<App />, document.getElementById("root"));
+const root = document.getElementById('app')
+
+export async function mount() {
+  root && ReactDOM.createRoot(root).render(<App />)
+}
+
+mount()
